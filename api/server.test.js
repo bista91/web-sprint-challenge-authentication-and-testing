@@ -1,5 +1,5 @@
 const request = require('supertest');
-const server = require('../api/server.js')
+const { server, httpServer } = require('./server.js')
 const db = require ('../data/dbConfig.js')
 
 
@@ -50,4 +50,17 @@ describe('Auth API Tests', () => {
     expect(jokesRes.status).toBe(200);
     expect(jokesRes.body).toHaveLength(3);
   });
+});
+
+// Test setup
+beforeAll(() => {
+  // Any setup if required
+});
+
+afterAll(done => {
+  httpServer.close(done);  // Close the http server after all tests are done
+});
+
+describe('Auth API Tests', () => {
+  // Your test cases here
 });
