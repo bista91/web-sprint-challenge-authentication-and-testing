@@ -1,9 +1,9 @@
 const request = require('supertest');
-const { server, httpServer } = require('./server.js')
-const db = require ('../data/dbConfig.js')
-
+const { server, httpServer } = require('./server.js');
+const db = require('../data/dbConfig.js');
 
 describe('Auth API Tests', () => {
+  // Setup database before each test
   beforeEach(async () => {
     await db.migrate.rollback();
     await db.migrate.latest();
@@ -52,15 +52,7 @@ describe('Auth API Tests', () => {
   });
 });
 
-// Test setup
-beforeAll(() => {
-  // Any setup if required
-});
-
+// Closing the HTTP server after all tests
 afterAll(done => {
-  httpServer.close(done);  // Close the http server after all tests are done
-});
-
-describe('Auth API Tests', () => {
-  // Your test cases here
+  httpServer.close(done);  // Close the server after tests are done
 });
