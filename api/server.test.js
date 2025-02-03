@@ -50,9 +50,10 @@ describe('Auth API Tests', () => {
     expect(jokesRes.status).toBe(200);
     expect(jokesRes.body).toHaveLength(3);
   });
-});
 
-// Closing the HTTP server after all tests
-afterAll(done => {
-  httpServer.close(done);  // Close the server after tests are done
+
+  afterAll(async () => {
+    await db.destroy(); // Close database connection
+    httpServer.close(); // Close server properly
+});
 });
