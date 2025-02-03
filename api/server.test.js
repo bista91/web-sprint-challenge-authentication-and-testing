@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { server, httpServer } = require('./server.js');
+const server = require('./server.js');
 const db = require('../data/dbConfig.js');
 
 describe('Auth API Tests', () => {
@@ -51,9 +51,8 @@ describe('Auth API Tests', () => {
     expect(jokesRes.body).toHaveLength(3);
   });
 
-
+  // Proper teardown
   afterAll(async () => {
     await db.destroy(); // Close database connection
-    httpServer.close(); // Close server properly
-});
+  });
 });
